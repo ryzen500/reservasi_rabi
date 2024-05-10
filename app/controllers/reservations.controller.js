@@ -4,8 +4,20 @@ const Reservation = require('../models/reservation.model'); // Sesuaikan path ji
 exports.createReservation = async (req, res) => {
   try {
     const reservation = new Reservation(req.body);
-    const savedDevice = await reservation.save();
-    res.status(201).json(savedDevice);
+    const savedReservation = await reservation.save();
+     // Modifikasi respons dengan nama_pengirim
+
+     const responsePayload = {
+      id: savedReservation._id,
+      nama_pengirim: savedReservation.nama_pengirim, // Menambahkan nama_pengirim
+      ucapan: savedReservation.ucapan,
+      konfirmasi: savedReservation.konfirmasi ? 'Hadir' : 'Tidak Hadir', // Konversi ke teks
+      created_at: savedReservation.createdAt, // Tambahkan waktu pembuatan jika perlu
+    };
+
+    console.log(responsePayload);
+    // Kirim respons dengan status 201 dan data yang dimodifikasi
+    res.status(201).json(responsePayload);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
