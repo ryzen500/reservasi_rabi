@@ -23,10 +23,10 @@ db.mongoose
 
 
 const corsOptions = {
-  origin: "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-  preflightContinue: false,
-  optionsSuccessStatus: 204
+    origin: '*',
+    methods: '*',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }
 ;
 
