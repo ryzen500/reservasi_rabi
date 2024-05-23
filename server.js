@@ -30,10 +30,9 @@ const corsOptions = {
 }
 ;
 
-
-app.use(cors(corsOptions));
+// apply global middleware
+app.use(cors());
 app.use(express.json());
-
 
 app.use('/api',allRouter);
 
